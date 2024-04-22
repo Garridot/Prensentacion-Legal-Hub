@@ -190,7 +190,7 @@ Apesar de las pocas chances debido a que era una posicion backend semisenior, Aq
 
 # Football Players Stats Api
 
-El Football Players Stats API es un proyecto de Django Rest Framework diseñado para gestionar la información y las estadísticas de los jugadores de fútbol.
+Football Players Stats API es un proyecto de Django Rest Framework diseñado para gestionar la información y las estadísticas de los jugadores de fútbol.
 
 ### 💻 Tecnologias Usadas:
 
@@ -222,10 +222,10 @@ realizar análisis estadísticos y generar gráficos que ayudaran a los usuarios
 
 ![](project_images/diagram_project2.jpg)
 
-Como se puede ver, aqui estan los 3 modulos: 
-- El webscraping que, una vez recolectado la informacion, se logea a la API principal y ya con el token obtenido envia la informacion.
-- La api principal guarda o actualiza los datos en la base de datos. 
-- Y la segunda api se encarga del analisis de datos.  
+Como se puede ver, aquí están los 3 módulos. El webscraping que, una vez recolectado la información, se loguea a la API principal y ya con el token obtenido envía la información.
+La API principal guarda o actualiza los datos en la base de datos. Y la segunda API se encarga del análisis de datos. En realidad, deberían ser 4 módulos. El cuarto debería ser un front-end aparte de la segunda API, pero como no se React lo hice en el mismo servidor.  
+
+Esto estaba en un principio desplegado en Google Cloud, pero por temas de costos, decide subirlo a un servidor gratuito. El problema surge que el servidor se apaga cuado está inactivo, el web scraping generaba errores por tiempo de espera cuando no respondía la API, y para que cuando una persona entre a una de las API no se demore tanto, decidí en GitHub Actions crear un cron Job que cada cierto esté llamando a los tres servidores. Primero llama a la primera API y una vez realizado con éxito, llama a los otros 2 servidores.
 
 ## API Endpoints
 - ### Jugadores:
