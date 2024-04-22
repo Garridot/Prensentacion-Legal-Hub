@@ -249,11 +249,63 @@ def get_auth_token(data):
         raise Exception(f"Error during request to stats API. Status code: {response.status_code}")        
 ```
 
-### Web Scraping
+### Ejemplo de Vista de la API principal
+``` python
+class GeneralStatsView(ModelViewSet):        
+    serializer_class   = PlayerStatsSerializer
+    queryset           = Player_Stats.objects.all() 
 
-Esta API utiliza un proceso automatizado llamado raspado web para recopilar datos. A continuación, almacena y actualiza esta información con regularidad para asegurarse de que sigue siendo precisa y actualizada.
+    def get_permissions(self):
+        if self.action in ['list','retrieve']: return [permissions.AllowAny()]
+        elif self.action in ['create', 'update', 'partial_update', 'destroy']:
+            return [IsAuthenticatedForCustomActions()]       
+        return [permissions.IsAuthenticated()]             
 
-Este proyecto de raspado web de Python se centra en extraer las estadísticas de los jugadores de fútbol del sitio web de Transfermarkt. El script principal, main.py, utiliza la biblioteca BeautifulSoup para analizar el contenido HTML de las páginas web y extraer la información necesaria. La programación para ejecutar este script se configura mediante GitHub Actions.
+    def list(self, request):
+
+        player_id = request.data.get('player')
+        team = request.data.get('team')
+        competition = request.data.get('competition')
+        season = request.data.get('season')
+
+        # Check if a record already exists for the specified player, team, competition, and season
+        queryset = Player_Stats.objects.all()
+        if player_id is not None:
+            queryset = queryset.filter(player=player_id)
+        if team is not None:
+            queryset = queryset.filter(team=team)
+        if competition is not None:
+            queryset = queryset.filter(competition=competition)
+        if season is not None:
+            queryset = queryset.filter(season=season)
+  
+        serializer = PlayerStatsSerializer(queryset, many=True)        
+        return Response(serializer.data)
+        
+   
+    def create(self, request, *args, **kwargs):
+        # Extract relevant data from the request
+        player_id = request.data.get('player')
+        team = request.data.get('team')
+        competition = request.data.get('competition')
+        season = request.data.get('season')
+
+        # Check if a record already exists for the specified player, team, competition, and season
+        existing_record = Player_Stats.objects.filter(player=player_id, team=team, competition=competition, season=season).first()
+
+        if existing_record:
+            # If the record exists, update it
+            serializer = self.get_serializer(existing_record, data=request.data, partial=True)
+        else:
+            # If the record doesn't exist, create a new one
+            serializer = self.get_serializer(data=request.data)
+
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+
+        return Response(serializer.data, status=status.HTTP_201_CREATED)    
+```
+
 
 ### Resultado Final:
 
