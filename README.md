@@ -90,8 +90,6 @@ class OrderDetailSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError(data) 
 
         return super().validate(attrs)
-
- 
 ```
 ### ViewSets:
 ``` python
@@ -140,7 +138,41 @@ class OrderDetailView(ModelViewSet):
         return super().destroy(request, *args, **kwargs)   
             
 ```
+### Conexión a Dolarsi API   
+``` python
+def get_exchange_rate():
+    url = 'https://www.dolarsi.com/api/api.php?type=valoresprincipales'
+    response = requests.get(url)
+    data = response.json()
+    for item in data:
+        if item['casa']['nombre'] == 'Dolar Blue':
+            return float(item['casa']['venta'].replace(',', '.'))
+``` 
+### Conexión a Paypal (Vial Frontend)   
+``` javascript
+<!-- Include the PayPal JavaScript SDK -->
+<script src="https://www.paypal.com/sdk/js?client-id=test&currency=USD"></script>
 
+<script>
+    // Render the PayPal button into #paypal-button-container
+    paypal.Buttons({
+        // Set up the transaction
+        createOrder: function(data, actions) {
+            return actions.order.create({
+                purchase_units: [{
+                    amount: {
+                        value: String(document.querySelector(".total:nth-child(3) span:nth-child(2)").textContent).replace("$ ","")
+                    }
+                }]
+            });
+        },
+        // Finalize the transaction
+        onApprove: function(data, actions) {
+            checkout()
+        }
+    }).render('#paypal-button-container');
+</script>
+``` 
 
 ### Resultado Final:
 
@@ -201,7 +233,7 @@ Como se puede ver, aqui estan los 3 modulos:
 
 ### Función para obtener su token de autenticación
 
-```
+``` python
 data = { "email": YOUR_EMAIL, "password": YOUR_PASSWORD}
 ```
 ``` python
