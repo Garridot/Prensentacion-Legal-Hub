@@ -199,6 +199,20 @@ El Football Players Stats API es un proyecto de Django Rest Framework diseñado 
 ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white) 
 ![Bootstrap](https://img.shields.io/badge/bootstrap-%23563D7C.svg?style=for-the-badge&logo=bootstrap&logoColor=white)
 
+Este proyecto consta de 3 módulos principales:
+
+—— En primer lugar, una API REST utilizando Django Rest Framework para almacenar los datos 
+recolectados. Implementé un método de autenticación basado en tokens para garantizar la seguridad 
+de la información. 
+
+—— Luego, utilicé Python para crear un script de web scraping que recopilaba los datos relevantes 
+de los atletas. Estos datos se limpiaban y procesaban antes de autenticarse en la primera API para 
+su almacenamiento.
+
+—— Finalmente, una segunda API REST utilizando Flask, que se encargaba del análisis de datos 
+y su visualización en el frontend. Utilicé bibliotecas como Pandas, NumPy y Matplotlib para 
+realizar análisis estadísticos y generar gráficos que ayudaran a los usuarios a comprender mejor.
+
 ### Arquitectura del Proyecto:
 
 ![](project_images/diagram_project2.jpg)
