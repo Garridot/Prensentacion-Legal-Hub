@@ -1,4 +1,13 @@
-## Prueba de conocimiento con Django Rest Framework 
+# Ruins of Versailles | Ecommerce Project
+
+### 💻 Tecnologias Usadas:
+
+![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54) ![Django](https://img.shields.io/badge/django-%23092E20.svg?style=for-the-badge&logo=django&logoColor=white) ![DjangoREST](https://img.shields.io/badge/DJANGO-REST-ff1709?style=for-the-badge&logo=django&logoColor=white&color=ff1709&labelColor=gray) 
+![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E) ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white) ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white) ![Bootstrap](https://img.shields.io/badge/bootstrap-%23563D7C.svg?style=for-the-badge&logo=bootstrap&logoColor=white)
+
+API que proporciona la funcionalidad de un comercio electrónico sobre una tienda de pinturas. Originada de la siguiente prueba tecnica:
+
+### Prueba de conocimiento con Django Rest Framework 
 
 [Objetivo]<br>
 Analizar el nivel de conocimiento de los postulantes a desarrollador de backend [Nombre de la empresa].<br> 
@@ -46,19 +55,13 @@ Para la implementación de la API se debe utilizar ModelViewSet, ModelSerializer
 - Deployar la api en producción, por ejemplo en heroku o https://www.pythonanywhere.com/, 
 - Implementar test unitario para validar los endpoints.
 
+a todo lo anterior le agregue un sitio web y la integracion de paypal como metodo de pago. 
 
-# Ruins of Versailles | Ecommerce Project
-
-API que proporciona la funcionalidad de un comercio electrónico sobre una tienda de pinturas.
-
-### 💻 Tecnologias Usadas:
-
-![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54) ![Django](https://img.shields.io/badge/django-%23092E20.svg?style=for-the-badge&logo=django&logoColor=white) ![DjangoREST](https://img.shields.io/badge/DJANGO-REST-ff1709?style=for-the-badge&logo=django&logoColor=white&color=ff1709&labelColor=gray) 
-![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E) ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white) ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white) ![Bootstrap](https://img.shields.io/badge/bootstrap-%23563D7C.svg?style=for-the-badge&logo=bootstrap&logoColor=white)
-
-### Database del Proyecto:
+### Database del Proyecto:     
 
 ![](project_images/database_project1.png)
+
+Aqui se ve como esta diseñada la base de datos. Le agregue el modelo "CostumerUser" y añadi otros atributos en los modelos ya existentes.
 
 ### Serializers:
 ``` python
@@ -173,6 +176,8 @@ def get_exchange_rate():
     }).render('#paypal-button-container');
 </script>
 ``` 
+
+Apesar de las pocas chances debido a que era una posicion backend semisenior, Aqui aprendi el uso cors, el uso de tokens, la integracion de apis externas y en si el sentido de las APIs. 
 
 ### Resultado Final:
 
